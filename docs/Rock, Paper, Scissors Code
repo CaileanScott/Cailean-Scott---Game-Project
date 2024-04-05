@@ -1,0 +1,66 @@
+#include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
+
+#define ROCK 'r'
+#define PAPER 'p'
+#define SCISSORS 's'
+
+#define COMPUTER_WIN 0
+#define YOU_WIN 1
+#define DRAW -1
+
+int game(char you, char computer)
+{
+    if (you == computer)
+    return DRAW; 
+
+    if (you == 'r' && computer == 'p')
+    return COMPUTER_WIN;
+        else if (you == 'p' && computer =='r') return YOU_WIN;
+
+    if (you == 'r' && computer == 's')
+    return YOU_WIN;
+        else if (you == 's' && computer == 'r') return COMPUTER_WIN;
+
+    if (you == 'p' && computer == 's')
+    return COMPUTER_WIN;
+        else if (you == 's' && computer == 'p') return YOU_WIN;
+}
+
+int main()
+{
+    int n;
+
+    char you, computer, result;
+
+srand(time(NULL));
+n=rand() %100;
+
+if (n < 33)
+computer = 's';
+    
+    else if (n > 33 && n<66)
+    computer = 'p';
+
+    else if (n>100)
+    computer = 'r';
+
+printf ("\n\n\n\nEnter r for ROCK, p for PAPER and s for SCISSORS\n");
+scanf ("%c", &you);
+
+result = game(you, computer);
+
+if (result == DRAW) {
+    printf("\n\nGame Draw!\n");
+}
+else if (result == YOU_WIN) {
+    printf("\n\nWell done you win!\n");
+}
+else {
+    printf("\n\nYou loose better luck next time!\n");
+}
+    printf("You choose : %c and computer choose : %c\n", you, computer);
+
+return 0;
+}
